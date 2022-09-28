@@ -1,0 +1,9 @@
+.dashboard {
+  margin-top: 4%;
+  border-radius: 5px;
+  padding: 2%;
+  height: 80%;
+  background-color: #231651;
+  display: flex;
+  font-family: 'Courier New', monospace;
+}
