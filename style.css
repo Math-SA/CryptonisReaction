@@ -1,3 +1,13 @@
-h1, p {
+body {
+  background-color: #297373ff;
+}
+h1,
+p {
   font-family: Lato;
 }
+
+--aquamarine: #85ffc7ff;
+--skobeloff: #297373ff;
+--lavender-blush: #fceff9ff;
+--russian-violet: #231651ff;
+--terra-cotta: #e07a5fff;
