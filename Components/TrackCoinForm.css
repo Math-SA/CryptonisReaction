@@ -1,6 +1,8 @@
 .trackCoinForm {
   background-color: #fceff9;
   padding: 2%;
+  border-radius: 5px;
+  margin-bottom: 1%;
 }
 
 .trackCoinForm label {
@@ -13,8 +15,17 @@
   padding: 1%;
   border-radius: 4px;
   font-size: 1.3em;
-  background-color: #aa4465;
-  color: #fceff9;
-  font-family: 'Courier New', Courier, monospace;
+  background-color: #231651;
+  color: white;
   font-weight: bolder;
+}
+
+.trackCoinForm input {
+  font-size: 1.2em;
+  width: 60%;
+}
+
+.trackCoinForm button:hover {
+  background-color: #402897;
+  box-shadow: 5%;
 }
