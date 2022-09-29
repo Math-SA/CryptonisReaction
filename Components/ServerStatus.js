@@ -1,30 +1,40 @@
 import * as React from 'react';
-import { useState } from 'react';
 import './ServerStatus.css';
 import Axios from 'axios';
 
 function ServerStatus(props) {
-  const serverPingUrl = 'https://devplay-cryptonis.onrender.com/ping';
-  const pingAllowed = false;
-  const pingInterval = 3000;
-  const pingServer = () => {
-    Axios.get(serverPingUrl).then((res) => {
-      props.repaint(res.status == 200);
-    });
-  };
-
-  const setServerStatusClass = () => {
-    if (props.online) {
+  const getClass = (online) => {
+    if (online) {
       return 'status online';
     } else {
       return 'status offline';
     }
   };
 
-  if (pingAllowed) {
-    setTimeout(pingServer, pingInterval);
-  }
+  const [serverStatusClass, setServerStatusClass] = React.useState(
+    getClass(false)
+  );
 
-  return <div className={setServerStatusClass()}></div>;
+  const serverPingUrl = 'https://devplay-cryptonis.onrender.com/ping';
+  const pingAllowed = true;
+  const pingWait = 3000;
+  let pingCallInterval = null;
+  const [serverAlive, setServerAlive] = React.useState(false);
+  const pingServer = () => {
+    if (pingAllowed) {
+      Axios.get(serverPingUrl).then((res) => {
+        setServerAlive(res.status == 200);
+      });
+    }
+  };
+
+  React.useEffect(() => {
+    if (pingCallInterval == null) {
+      pingCallInterval = setInterval(pingServer, pingWait);
+    }
+    setServerStatusClass(getClass(serverAlive));
+  }, [serverAlive]);
+
+  return <div className={serverStatusClass}></div>;
 }
 export default ServerStatus;
